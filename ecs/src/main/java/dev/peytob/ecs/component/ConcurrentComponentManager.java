@@ -17,16 +17,16 @@ public class ConcurrentComponentManager implements ComponentManager {
     }
 
     @Override
-    public boolean registerComponent(Component component) {
+    public void registerComponent(Component component) {
         Class<? extends Component> componentClass = component.getClass();
-        components.putIfAbsent(componentClass, new HashSet<>());
+        components.putIfAbsent(componentClass, Collections.synchronizedCollection(new HashSet<>()));
         Collection<Component> componentsByClass = components.get(componentClass);
 
         if (componentsByClass.contains(component)) {
-            throw new ComponentException("Component already registered!", component);
+            throw new ComponentException("Component is already registered!", component);
         }
 
-        return componentsByClass.add(component);
+        componentsByClass.add(component);
     }
 
     @Override

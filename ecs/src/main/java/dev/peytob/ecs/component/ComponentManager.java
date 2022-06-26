@@ -4,9 +4,9 @@ import java.util.Collection;
 
 public interface ComponentManager {
 
-   boolean registerComponent(Component component);
+    void registerComponent(Component component);
 
-   boolean removeComponent(Component component);
+    boolean removeComponent(Component component);
 
     Collection<Class<? extends Component>> getComponentsTypes();
 
