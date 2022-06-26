@@ -4,9 +4,9 @@ import java.util.Collection;
 
 public interface EntityManager {
 
-    <T extends Entity> T registerEntity(T entity);
+    boolean registerEntity(Entity entity);
 
-    <T extends Entity> T removeEntity(T entity);
+    boolean removeEntity(Entity entity);
 
     Collection<Class<? extends Entity>> getEntitiesTypes();
 
