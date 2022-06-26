@@ -8,6 +8,8 @@ public interface Component {
 
     Entity getEntity();
 
+    void bindEntity(Entity entity);
+
     default boolean isBoundedToEntity() {
         return isNull(getEntity());
     }

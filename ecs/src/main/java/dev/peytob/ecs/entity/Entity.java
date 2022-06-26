@@ -10,7 +10,7 @@ public interface Entity {
 
     <T extends Component> T getComponent(Class<T> componentClass);
 
-    <T extends Component> T removeComponent(Class<T> component);
+    <T extends Component> T removeComponent(Class<T> componentClass);
 
     @SuppressWarnings("unchecked")
     // According to the contract, objects in values must be cast to the types in the key
@@ -18,5 +18,5 @@ public interface Entity {
         return (T) removeComponent(component.getClass());
     }
 
-    <T extends Component> T bindComponent(Component component);
+    <T extends Component> T bindComponent(T component);
 }
