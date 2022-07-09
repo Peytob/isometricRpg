@@ -1,6 +1,5 @@
 package dev.peytob.ecs.context;
 
-import dev.peytob.ecs.component.Component;
 import dev.peytob.ecs.component.ComponentsAccessor;
 import dev.peytob.ecs.entity.EntitiesAccessor;
 import dev.peytob.ecs.entity.Entity;
@@ -27,22 +26,12 @@ public class ImmutableEcsContext implements EcsContext {
     }
 
     @Override
-    public <T extends Component> T registerComponent(T component) {
+    public Entity newEntity() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public <T extends Entity> T registerEntity(T entity) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public <T extends Component> T removeComponent(T component) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public <T extends Entity> T removeEntity(T entity) {
+    public Entity removeEntity(Entity entity) {
         throw new UnsupportedOperationException();
     }
 
@@ -63,6 +52,6 @@ public class ImmutableEcsContext implements EcsContext {
 
     @Override
     public void executeSystems() {
-        targetContext.executeSystems();
+        throw new UnsupportedOperationException();
     }
 }

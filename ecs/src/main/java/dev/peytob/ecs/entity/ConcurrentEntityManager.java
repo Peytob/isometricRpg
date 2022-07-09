@@ -5,45 +5,31 @@ import dev.peytob.ecs.exception.EntityException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class ConcurrentEntityManager implements EntityManager {
 
-    private final Map<Class<? extends Entity>, Collection<Entity>> entities;
+    private final Collection<Entity> entities;
 
     public ConcurrentEntityManager() {
-        this.entities = new ConcurrentHashMap<>();
+        this.entities = Collections.synchronizedCollection(new HashSet<>());
     }
 
     @Override
     public void registerEntity(Entity entity) {
-        Class<? extends Entity> entityClass = entity.getClass();
-        entities.putIfAbsent(entityClass, new HashSet<>());
-        Collection<Entity> entitiesByClass = entities.get(entityClass);
-
-        if (entitiesByClass.contains(entity)) {
+        if (entities.contains(entity)) {
             throw new EntityException("Entity is already registered!", entity);
         }
 
-        entitiesByClass.add(entity);
+        entities.add(entity);
     }
 
     @Override
     public boolean removeEntity(Entity entity) {
-        Class<? extends Entity> entityClass = entity.getClass();
-        Collection<Entity> entitiesByClass = entities.get(entityClass);
-        return entitiesByClass != null && entitiesByClass.remove(entity);
+        return entities.remove(entity);
     }
 
     @Override
-    public Collection<Class<? extends Entity>> getEntitiesTypes() {
-        return entities.keySet();
-    }
-
-    @Override
-    public Collection<Entity> getEntities(Class<? extends Entity> entityClass) {
-        Collection<Entity> entitiesByClass = entities.get(entityClass);
-        return entitiesByClass == null ? Collections.emptySet() : entitiesByClass;
+    public Collection<Entity> getEntities() {
+        return Collections.unmodifiableCollection(entities);
     }
 }

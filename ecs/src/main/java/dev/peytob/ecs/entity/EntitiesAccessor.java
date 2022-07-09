@@ -12,11 +12,7 @@ public class EntitiesAccessor {
         this.entityManager = requireNonNull(entityManager);
     }
 
-    public Collection<Class<? extends Entity>> getEntitiesTypes() {
-        return entityManager.getEntitiesTypes();
-    }
-
-    public Collection<Entity> getEntities(Class<? extends Entity> entityClass) {
-        return entityManager.getEntities(entityClass);
+    public Collection<Entity> getEntities() {
+        return entityManager.getEntities();
     }
 }

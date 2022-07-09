@@ -1,17 +1,18 @@
-package dev.peytob.ecs.entity;
+package dev.peytob.ecs.context;
 
 import dev.peytob.ecs.component.Component;
+import dev.peytob.ecs.entity.Entity;
 import dev.peytob.ecs.exception.EntityException;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public abstract class AbstractEntity implements Entity {
+class GenericEntity implements Entity {
 
     private final Map<Class<? extends Component>, Component> components;
 
-    public AbstractEntity() {
+    public GenericEntity() {
         this.components = new ConcurrentHashMap<>();
     }
 

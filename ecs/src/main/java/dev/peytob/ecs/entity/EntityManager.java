@@ -8,7 +8,5 @@ public interface EntityManager {
 
     boolean removeEntity(Entity entity);
 
-    Collection<Class<? extends Entity>> getEntitiesTypes();
-
-    Collection<Entity> getEntities(Class<? extends Entity> entityClass);
+    Collection<Entity> getEntities();
 }
