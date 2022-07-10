@@ -3,6 +3,7 @@ package dev.peytob.ecs.component;
 import dev.peytob.ecs.component.test.TestComponent1;
 import dev.peytob.ecs.component.test.TestComponent2;
 import dev.peytob.ecs.exception.ComponentException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,16 +12,20 @@ abstract class ComponentManagerTest {
 
     abstract ComponentManager createNewComponentManager();
 
+    ComponentManager componentManager;
+
+    @BeforeEach
+    void setUp() {
+        componentManager = createNewComponentManager();
+    }
+
     @Test
     void newComponentManagerIsEmpty() {
-        ComponentManager componentManager = createNewComponentManager();
-
         assertTrue(componentManager.getComponentsTypes().isEmpty());
     }
 
     @Test
     void oneComponentSuccessfullyRegistered() {
-        ComponentManager componentManager = createNewComponentManager();
         TestComponent1 testComponent1 = new TestComponent1();
 
         componentManager.registerComponent(testComponent1);
@@ -38,7 +43,6 @@ abstract class ComponentManagerTest {
 
     @Test
     void multipleComponentsSuccessfullyRegistered() {
-        ComponentManager componentManager = createNewComponentManager();
         TestComponent1 testComponent1 = new TestComponent1();
         TestComponent2 testComponent2 = new TestComponent2();
 
@@ -57,7 +61,6 @@ abstract class ComponentManagerTest {
 
     @Test
     void multipleSomeTypeComponentsRegisteringIsSuccessfully() {
-        ComponentManager componentManager = createNewComponentManager();
         TestComponent1 testComponent11 = new TestComponent1();
         TestComponent1 testComponent12 = new TestComponent1();
 
@@ -72,7 +75,6 @@ abstract class ComponentManagerTest {
 
     @Test
     void removingComponentIsSuccessfully() {
-        ComponentManager componentManager = createNewComponentManager();
         TestComponent1 testComponent11 = new TestComponent1();
         TestComponent1 testComponent12 = new TestComponent1();
 
@@ -90,7 +92,6 @@ abstract class ComponentManagerTest {
 
     @Test
     void removingComponentReturnsCurrentValue() {
-        ComponentManager componentManager = createNewComponentManager();
         TestComponent1 testComponent1 = new TestComponent1();
 
         componentManager.registerComponent(testComponent1);
@@ -100,7 +101,6 @@ abstract class ComponentManagerTest {
 
     @Test
     void registeringAlreadyRegisteredComponentThrowsException() {
-        ComponentManager componentManager = createNewComponentManager();
         TestComponent1 testComponent1 = new TestComponent1();
 
         assertDoesNotThrow(() -> componentManager.registerComponent(testComponent1));

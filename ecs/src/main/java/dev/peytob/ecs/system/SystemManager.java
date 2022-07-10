@@ -2,15 +2,15 @@ package dev.peytob.ecs.system;
 
 import dev.peytob.ecs.context.EcsContext;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface SystemManager {
 
-    List<System> getSystems();
+    Collection<System> getSystems();
 
-    <T extends System> T registerSystem(T system);
+    boolean registerSystem(System system);
 
-    <T extends System> T removeSystem(T system);
+    boolean removeSystem(System system);
 
     void executeSystems(EcsContext context);
 }

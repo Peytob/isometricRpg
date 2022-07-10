@@ -6,10 +6,6 @@ public class ComponentException extends RuntimeException {
 
     private final Component component;
 
-    public ComponentException(Component component) {
-        this.component = component;
-    }
-
     public ComponentException(String message, Component component) {
         super(message);
         this.component = component;
