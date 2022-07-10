@@ -1,8 +1,8 @@
 plugins {
-    id 'java-library'
+    id 'application'
 }
 
-group rootProject.group + ".ecs"
+group rootProject.group + '.client'
 version rootProject.version
 
 repositories {
@@ -10,6 +10,10 @@ repositories {
 }
 
 dependencies {
+
+    implementation libraries.slf4j
+    implementation libraries.spring
+
     testImplementation libraries.junitApi
     testRuntimeOnly libraries.jupiter_engine
 }

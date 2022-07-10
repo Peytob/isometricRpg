@@ -11,6 +11,14 @@ project.ext.libraries = [
         ],
         jupiter_engine: [
                 'org.junit.jupiter:junit-jupiter-engine:5.8.0'
+        ],
+        spring: [
+                'org.springframework:spring-core:5.3.19',
+                'org.springframework.boot:spring-boot:2.6.7'
+        ],
+        slf4j: [
+                'org.slf4j:slf4j-api:1.7.32',
+                'org.slf4j:slf4j-simple:1.7.32'
         ]
 ]
 
