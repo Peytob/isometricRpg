@@ -15,12 +15,12 @@ public class ConcurrentEntityManager implements EntityManager {
     }
 
     @Override
-    public void registerEntity(Entity entity) {
+    public boolean registerEntity(Entity entity) {
         if (entities.contains(entity)) {
             throw new EntityException("Entity is already registered!", entity);
         }
 
-        entities.add(entity);
+        return entities.add(entity);
     }
 
     @Override

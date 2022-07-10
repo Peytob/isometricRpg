@@ -1,14 +1,13 @@
-package dev.peytob.ecs.context;
+package dev.peytob.ecs.entity;
 
 import dev.peytob.ecs.component.Component;
-import dev.peytob.ecs.entity.Entity;
 import dev.peytob.ecs.exception.EntityException;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-class GenericEntity implements Entity {
+public class GenericEntity implements Entity {
 
     private final Map<Class<? extends Component>, Component> components;
 
@@ -36,13 +35,13 @@ class GenericEntity implements Entity {
     }
 
     @Override
-    public <T extends Component> T bindComponent(T component) {
+    public void bindComponent(Component component) {
         Class<? extends Component> componentClass = component.getClass();
 
         if (components.containsKey(componentClass)) {
             throw new EntityException("Entity already contains component with type " + componentClass.getSimpleName(), this);
         }
 
-        return component;
+        components.put(componentClass, component);
     }
 }

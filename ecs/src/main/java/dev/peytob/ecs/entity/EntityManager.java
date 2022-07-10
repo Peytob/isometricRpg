@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public interface EntityManager {
 
-    void registerEntity(Entity entity);
+    boolean registerEntity(Entity entity);
 
     boolean removeEntity(Entity entity);
 

@@ -29,7 +29,7 @@ public class ContextEntity implements Entity {
     }
 
     @Override
-    public <T extends Component> T bindComponent(T component) {
-        return entity.bindComponent(component);
+    public void bindComponent(Component component) {
+        entity.bindComponent(component);
     }
 }
