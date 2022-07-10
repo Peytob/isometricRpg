@@ -5,12 +5,15 @@ import dev.peytob.ecs.entity.Entity;
 
 import java.util.Collection;
 
-public class ContextEntity implements Entity {
+class ContextEntity implements Entity {
 
     private final Entity entity;
 
-    public ContextEntity(Entity entity) {
+    private final MutableEcsContext context;
+
+    public ContextEntity(Entity entity, MutableEcsContext context) {
         this.entity = entity;
+        this.context = context;
     }
 
     @Override
@@ -25,11 +28,18 @@ public class ContextEntity implements Entity {
 
     @Override
     public <T extends Component> T removeComponent(Class<T> componentClass) {
-        return entity.removeComponent(componentClass);
+        T component = entity.removeComponent(componentClass);
+        context.getComponentManager().removeComponent(component);
+        return component;
     }
 
     @Override
     public void bindComponent(Component component) {
         entity.bindComponent(component);
+
+        context.getComponentManager().removeComponent(component);
+        if (entity.getComponents().isEmpty()) {
+            context.getEntityManager().removeEntity(entity);
+        }
     }
 }

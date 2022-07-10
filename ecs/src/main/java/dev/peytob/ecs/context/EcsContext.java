@@ -5,7 +5,7 @@ import dev.peytob.ecs.entity.EntitiesAccessor;
 import dev.peytob.ecs.entity.Entity;
 import dev.peytob.ecs.system.System;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface EcsContext {
 
@@ -15,13 +15,13 @@ public interface EcsContext {
 
     Entity newEntity();
 
-    Entity removeEntity(Entity entity);
+    boolean removeEntity(Entity entity);
 
-    List<System> getSystems();
+    Collection<System> getSystems();
 
-    <T extends System> T registerSystem(T system);
+    boolean registerSystem(System system);
 
-    <T extends System> T removeSystem(T system);
+    boolean removeSystem(System system);
 
     void executeSystems();
 

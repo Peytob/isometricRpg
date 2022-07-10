@@ -5,13 +5,13 @@ import dev.peytob.ecs.entity.EntitiesAccessor;
 import dev.peytob.ecs.entity.Entity;
 import dev.peytob.ecs.system.System;
 
-import java.util.List;
+import java.util.Collection;
 
-public class ImmutableEcsContext implements EcsContext {
+class UnmodifiableEcsContext implements EcsContext {
 
     private final EcsContext targetContext;
 
-    public ImmutableEcsContext(EcsContext targetContext) {
+    public UnmodifiableEcsContext(EcsContext targetContext) {
         this.targetContext = targetContext;
     }
 
@@ -31,22 +31,22 @@ public class ImmutableEcsContext implements EcsContext {
     }
 
     @Override
-    public Entity removeEntity(Entity entity) {
+    public boolean removeEntity(Entity entity) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public List<System> getSystems() {
+    public Collection<System> getSystems() {
         return targetContext.getSystems();
     }
 
     @Override
-    public <T extends System> T registerSystem(T system) {
+    public boolean registerSystem(System system) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public <T extends System> T removeSystem(T system) {
+    public boolean removeSystem(System system) {
         throw new UnsupportedOperationException();
     }
 
