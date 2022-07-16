@@ -1,5 +1,7 @@
 package dev.peytob.client;
 
+import dev.peytob.client.machine.Game;
+import dev.peytob.client.machine.state.GameLibrariesInitializeState;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,7 +10,9 @@ public class ClientApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        System.out.println("Hello world!");
+        Game game = new Game();
+        game.changeGameState(new GameLibrariesInitializeState());
+        game.run();
     }
 
     public static void main(String[] args) {
