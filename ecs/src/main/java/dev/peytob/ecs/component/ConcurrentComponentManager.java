@@ -46,4 +46,9 @@ public class ConcurrentComponentManager implements ComponentManager {
         Collection<Component> componentsByClass = components.get(componentClass);
         return componentsByClass == null ? Collections.emptySet() : componentsByClass;
     }
+
+    @Override
+    public void clear() {
+        components.clear();
+    }
 }

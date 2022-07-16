@@ -106,4 +106,22 @@ abstract class ComponentManagerTest {
         assertDoesNotThrow(() -> componentManager.registerComponent(testComponent1));
         assertThrows(ComponentException.class, () -> componentManager.registerComponent(testComponent1));
     }
+
+    @Test
+    void componentManagerIsEmptyAfterClear() {
+        componentManager.registerComponent(new TestComponent1());
+        componentManager.registerComponent(new TestComponent1());
+        componentManager.registerComponent(new TestComponent2());
+        componentManager.registerComponent(new TestComponent2());
+
+        assertEquals(2, componentManager.getComponentsTypes().size());
+        assertEquals(2, componentManager.getComponents(TestComponent1.class).size());
+        assertEquals(2, componentManager.getComponents(TestComponent2.class).size());
+
+        componentManager.clear();
+
+        assertTrue(componentManager.getComponentsTypes().isEmpty());
+        assertTrue(componentManager.getComponents(TestComponent1.class).isEmpty());
+        assertTrue(componentManager.getComponents(TestComponent2.class).isEmpty());
+    }
 }

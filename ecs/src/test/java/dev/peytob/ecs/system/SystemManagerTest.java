@@ -87,4 +87,17 @@ abstract class SystemManagerTest {
         assertEquals(2, systemManager.getSystems().size());
         assertIterableEquals(List.of(first, third), systemManager.getSystems());
     }
+
+    @Test
+    void systemManagerIsEmptyAfterClear() {
+        systemManager.registerSystem(new JustOrderedSystem(1));
+        systemManager.registerSystem(new JustOrderedSystem(2));
+        systemManager.registerSystem(new JustOrderedSystem(3));
+
+        assertEquals(3, systemManager.getSystems().size());
+
+        systemManager.clear();
+
+        assertTrue(systemManager.getSystems().isEmpty());
+    }
 }

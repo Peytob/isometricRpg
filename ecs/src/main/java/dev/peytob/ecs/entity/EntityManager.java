@@ -9,4 +9,6 @@ public interface EntityManager {
     boolean removeEntity(Entity entity);
 
     Collection<Entity> getEntities();
+
+    void clear();
 }

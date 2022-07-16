@@ -32,4 +32,9 @@ public class ConcurrentEntityManager implements EntityManager {
     public Collection<Entity> getEntities() {
         return Collections.unmodifiableCollection(entities);
     }
+
+    @Override
+    public void clear() {
+        entities.clear();
+    }
 }

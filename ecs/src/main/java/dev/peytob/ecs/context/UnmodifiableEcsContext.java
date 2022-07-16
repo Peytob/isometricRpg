@@ -54,4 +54,14 @@ class UnmodifiableEcsContext implements EcsContext {
     public void executeSystems() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void clearEntities() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void clearSystems() {
+        throw new UnsupportedOperationException();
+    }
 }

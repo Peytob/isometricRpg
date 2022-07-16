@@ -34,4 +34,9 @@ public class ConcurrentSystemManager implements SystemManager {
     public void executeSystems(EcsContext context) {
         systems.forEach(system -> system.execute(context));
     }
+
+    @Override
+    public void clear() {
+        systems.clear();
+    }
 }

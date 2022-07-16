@@ -11,4 +11,6 @@ public interface ComponentManager {
     Collection<Class<? extends Component>> getComponentsTypes();
 
     Collection<Component> getComponents(Class<? extends Component> componentClass);
+
+    void clear();
 }

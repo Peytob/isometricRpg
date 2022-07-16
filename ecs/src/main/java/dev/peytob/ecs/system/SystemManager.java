@@ -13,4 +13,6 @@ public interface SystemManager {
     boolean removeSystem(System system);
 
     void executeSystems(EcsContext context);
+
+    void clear();
 }

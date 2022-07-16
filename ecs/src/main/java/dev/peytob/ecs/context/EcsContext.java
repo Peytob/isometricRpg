@@ -25,4 +25,8 @@ public interface EcsContext {
 
     void executeSystems();
 
+    void clearEntities();
+
+    void clearSystems();
+
 }

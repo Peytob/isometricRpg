@@ -74,6 +74,17 @@ class MutableEcsContext implements EcsContext {
         systemManager.executeSystems(this);
     }
 
+    @Override
+    public void clearEntities() {
+        entityManager.clear();
+        componentManager.clear();
+    }
+
+    @Override
+    public void clearSystems() {
+        systemManager.clear();
+    }
+
     EntityManager getEntityManager() {
         return entityManager;
     }
