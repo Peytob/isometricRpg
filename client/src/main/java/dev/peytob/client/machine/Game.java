@@ -13,16 +13,24 @@ public final class Game {
     private static final Logger logger = LoggerFactory.getLogger(Game.class);
 
     private GameState gameState;
+    private GameState nextGameState;
     private final EcsContext context;
     private boolean isGameRunning;
 
     public Game() {
         this.gameState = null;
+        this.nextGameState = null;
         this.isGameRunning = true;
         this.context = Contexts.createContext();
     }
 
     public void changeGameState(GameState gameState) {
+        Objects.requireNonNull(gameState, "Game state must be not null");
+        logger.info("Before next tick game state will be changed to {}", gameState.getName());
+        this.nextGameState = gameState;
+    }
+
+    private void setGameState(GameState gameState) {
         Objects.requireNonNull(gameState, "Game state must be not null");
 
         logger.info("Changing game state to {}", gameState.getName());
@@ -39,9 +47,13 @@ public final class Game {
     }
 
     public void run() {
-        Objects.requireNonNull(gameState, "You should set game state before running the game");
+        Objects.requireNonNull(nextGameState, "You should set game state before running the game");
 
         while (isGameRunning) {
+            if (nextGameState != null) {
+                setGameState(nextGameState);
+                nextGameState = null;
+            }
             tick();
         }
     }

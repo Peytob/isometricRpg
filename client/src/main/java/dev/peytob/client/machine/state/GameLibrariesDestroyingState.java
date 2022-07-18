@@ -1,9 +1,11 @@
 package dev.peytob.client.machine.state;
 
+import dev.peytob.client.annotation.GameMachineState;
 import dev.peytob.client.machine.Game;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@GameMachineState
 public final class GameLibrariesDestroyingState implements GameState {
 
     private static final Logger logger = LoggerFactory.getLogger(GameLibrariesDestroyingState.class);
